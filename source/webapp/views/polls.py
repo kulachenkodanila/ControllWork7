@@ -1,5 +1,6 @@
+from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView
 
 from webapp.forms import PollForm
 from webapp.models import Poll
@@ -33,3 +34,14 @@ class DeletePoll(DeleteView):
 
     def get_success_url(self):
         return reverse("index")
+
+
+class CreatePoll(CreateView):
+    form_class = PollForm
+    template_name = "polls/poll_create.html"
+
+    def form_valid(self, form):
+        poll = form.save(commit=False)
+        poll.save()
+        form.save_m2m()
+        return redirect("poll_view", pk=poll.pk)
