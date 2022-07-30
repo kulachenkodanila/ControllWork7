@@ -4,7 +4,7 @@
         <a class="nav-link" href="#">Добавить вариант ответа</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Изменить вопрос</a>
+        <a class="nav-link" href="{% url "update_poll" poll.pk %}">Изменить вопрос</a>
     </li>
     <li class="nav-item">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pollDeleteModal">

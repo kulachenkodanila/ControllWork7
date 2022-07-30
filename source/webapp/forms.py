@@ -10,6 +10,12 @@ class PollForm(forms.ModelForm):
         fields = ["question"]
 
 
+class UserPollForm(forms.ModelForm):
+    class Meta:
+        model = Poll
+        fields = ["question"]
+
+
 
 class ChoiceForm(forms.ModelForm):
     class Meta:
@@ -18,8 +24,3 @@ class ChoiceForm(forms.ModelForm):
         widgets = {
             "interview": widgets.Select
         }
-
-
-
-
-

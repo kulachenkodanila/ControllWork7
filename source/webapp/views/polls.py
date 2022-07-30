@@ -1,8 +1,8 @@
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 
-from webapp.forms import PollForm
+from webapp.forms import PollForm, UserPollForm
 from webapp.models import Poll
 
 
@@ -45,3 +45,21 @@ class CreatePoll(CreateView):
         poll.save()
         form.save_m2m()
         return redirect("poll_view", pk=poll.pk)
+
+
+class UserProjectForm:
+    pass
+
+
+class UpdatePoll(UpdateView):
+    form_class = PollForm
+    template_name = "polls/poll_update.html"
+    model = Poll
+
+    def get_form_class(self):
+        if self.request.GET.get("is_admin"):
+            return PollForm
+        return UserPollForm
+
+    def get_success_url(self):
+        return reverse("poll_view", kwargs={"pk": self.object.pk})
