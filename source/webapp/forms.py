@@ -20,7 +20,7 @@ class UserPollForm(forms.ModelForm):
 class ChoiceForm(forms.ModelForm):
     class Meta:
         model = Choice
-        fields = ["text_var", "interview"]
-        widgets = {
-            "interview": widgets.Select
-        }
+        fields = ["text_var"]
+        # widgets = {
+        #     "interview": widgets.Select
+        # }

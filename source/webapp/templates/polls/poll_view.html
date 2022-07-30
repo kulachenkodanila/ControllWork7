@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block nav %}
     <li class="nav-item">
-        <a class="nav-link" href="#">Добавить вариант ответа</a>
+        <a class="nav-link" href="{% url "poll_choice_create" poll.pk %}">Добавить вариант ответа</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url "update_poll" poll.pk %}">Изменить вопрос</a>
