@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="#">Добавить вариант ответа</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Изменить вопрос</a>
+    </li>
+    <li class="nav-item">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pollDeleteModal">
+            Удалить вопрос
+        </button>
+    </li>
+{% endblock %}
+
+{% block content %}
+    {{ test }}
+    <p>
+        Вопрос:
+        <p>{{ poll.question }}
+    </p>
+    <p>Варианты ответа:</p>
+    {% for interview in poll.interviews.all %}
+        <p><input name="int" type="radio">{{ interview.text_var }}<a href="#">Изменить</a><a href="#">Удалить</a></p>
+        </p>
+    {% endfor %}
+    <a href="{% url "index" %}">На главную</a>
+
+
+    <div class="modal fade" id="pollDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pollDeleteModal">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Вы уверены что хотите удалить вопрос {{ poll.question }} и все ответы?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url "delete_poll" poll.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Да</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

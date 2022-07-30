@@ -1,5 +1,7 @@
-from django.views.generic import ListView, DetailView
+from django.urls import reverse
+from django.views.generic import ListView, DetailView, DeleteView
 
+from webapp.forms import PollForm
 from webapp.models import Poll
 
 
@@ -13,4 +15,21 @@ class IndexView(ListView):
         return Poll.objects.all()
 
 
+class PollView(DetailView):
+    template_name = "polls/poll_view.html"
+    model = Poll
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['interviews'] = self.object.interviews
+        return context
+
+
+class DeletePoll(DeleteView):
+    model = Poll
+
+    def get(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse("index")

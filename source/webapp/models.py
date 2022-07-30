@@ -22,9 +22,9 @@ class Choice(models.Model):
                                 verbose_name='Опрос')
 
     def __str__(self):
-        return f"{self.id}. {self.text_var}: {self.interview}"
+        return f"{self.id}. {self.text_var}"
 
     class Meta:
-        db_table = "choices"
+        db_table = "choice"
         verbose_name = "Ответ"
         verbose_name_plural = "Ответы"
