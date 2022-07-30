@@ -16,5 +16,15 @@ class Poll(models.Model):
         verbose_name_plural = "Опросы"
 
 
-# class Choice(models.Model):
-#     text = question = models.TextField(max_length=100, verbose_name="Вариант")
+class Choice(models.Model):
+    text_var = models.TextField(max_length=100, verbose_name="Вариант")
+    interview = models.ForeignKey("webapp.Poll", on_delete=models.CASCADE, related_name="interviews",
+                                verbose_name='Опрос')
+
+    def __str__(self):
+        return f"{self.id}. {self.text_var}: {self.interview}"
+
+    class Meta:
+        db_table = "choice"
+        verbose_name = "Ответ"
+        verbose_name_plural = "Ответы"
