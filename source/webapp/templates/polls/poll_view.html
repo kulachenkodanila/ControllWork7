@@ -21,7 +21,7 @@
     </p>
     <p>Варианты ответа:</p>
     {% for interview in poll.interviews.all %}
-        <p><input name="int" type="radio">{{ interview.text_var }}<a href="{% url "update_choice" interview.pk %}">Изменить</a><a href="#">Удалить</a></p>
+        <p><input name="int" type="radio">{{ interview.text_var }}<a href="{% url "update_choice" interview.pk %}">Изменить</a><a href="{% url "delete_choice" interview.pk %}">Удалить</a></p>
         </p>
     {% endfor %}
     <a href="{% url "index" %}">На главную</a>
