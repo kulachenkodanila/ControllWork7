@@ -21,6 +21,4 @@ class ChoiceForm(forms.ModelForm):
     class Meta:
         model = Choice
         fields = ["text_var"]
-        # widgets = {
-        #     "interview": widgets.Select
-        # }
+
