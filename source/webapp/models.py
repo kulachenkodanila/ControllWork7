@@ -25,6 +25,6 @@ class Choice(models.Model):
         return f"{self.id}. {self.text_var}: {self.interview}"
 
     class Meta:
-        db_table = "choice"
+        db_table = "choices"
         verbose_name = "Ответ"
         verbose_name_plural = "Ответы"

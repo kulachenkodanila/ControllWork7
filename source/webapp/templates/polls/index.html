@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="#">Добавить опрос</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <h1>Вопросы</h1>
+    <div class="row">
+        {% for poll in polls %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ poll.question }}</h5>
+                        <a href="#" class="card-link">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

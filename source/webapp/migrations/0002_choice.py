@@ -16,12 +16,12 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text_var', models.TextField(max_length=100, verbose_name='Вариант')),
-                ('interview', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='interviews', to='webapp.poll', verbose_name='Опрос')),
+                ('interview', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='interviews', to='webapp.polls', verbose_name='Опрос')),
             ],
             options={
                 'verbose_name': 'Ответ',
                 'verbose_name_plural': 'Ответы',
-                'db_table': 'choice',
+                'db_table': 'choices',
             },
         ),
     ]
